@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Don Bosco Construcciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#A35139;
+    --wine-deep:#1B2632;
+    --wine-soft:#C97355;
+    --cream:#ECE9DF;
+    --cream-warm:#E3DFD1;
+    --charcoal:#2C3B4D;
+    --charcoal-soft:#697585;
+    --line:#D6D0C0;
+    --white:#FFFFFF;
+    --stone-gray:#2C3B4D;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--charcoal);
+    background:var(--white);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Public Sans',sans-serif;font-weight:600;line-height:1.15;letter-spacing:-0.015em;}
+  .logo-serif{font-family:'Fraunces',serif;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  section{position:relative;}
+
+  /* Blueprint grid motif - signature architectural texture */
+  .blueprint-grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .blueprint-grid.dark{
+    background-image:
+      linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
+    opacity:1;
+  }
+
+  /* Eyebrow label - bold text, no line */
+  .dim{
+    display:flex;align-items:center;
+    font-family:'Inter',sans-serif;
+    font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--wine);font-weight:800;
+  }
+  .dim.on-dark{color:rgba(255,255,255,0.75);}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(27,38,50,0.96);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 32px;max-width:1180px;margin:0 auto;
+  }
+  nav .logo img{height:52px;width:auto;}
+  nav ul{display:flex;gap:36px;list-style:none;}
+  nav ul li a{
+    font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
+    font-weight:600;color:rgba(255,255,255,0.75);
+    padding-bottom:4px;border-bottom:1px solid transparent;
+    transition:border-color .2s, color .2s;
+  }
+  nav ul li a:hover{border-color:var(--wine);color:var(--white);}
+  nav .cta{
+    font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+    background:var(--wine);color:var(--white);
+    padding:11px 22px;border-radius:2px;
+    transition:background .2s;
+  }
+  nav .cta:hover{background:var(--wine-soft);}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    background:var(--wine-deep);
+    color:var(--white);
+    min-height:100vh;
+    display:grid;align-items:start;
+    padding:150px 0 84px;
+    overflow:hidden;
+  }
+  .hero-bg-slideshow{position:absolute;inset:0;z-index:0;}
+  .hero-bg-slide{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    opacity:0;transition:opacity 2.2s ease-in-out;
+  }
+  .hero-bg-slide.is-active{opacity:1;}
+  .hero-overlay{
+    position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg, rgba(44,59,77,0.72), rgba(44,59,77,0.82));
+  }
+  .hero .wrap{position:relative;z-index:2;max-width:none;margin:0;padding-left:48px;padding-right:48px;}
+  .hero h1{
+    font-family:'Public Sans',sans-serif;font-weight:400;
+    font-size:clamp(40px,6vw,68px);
+    line-height:1.05;
+    max-width:760px;
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:#E29073;}
+  .hero p{
+    font-size:18px;color:rgba(255,255,255,0.72);
+    max-width:480px;margin-top:40px;line-height:1.65;
+  }
+  .hero-actions{display:flex;gap:16px;margin-top:64px;}
+  .btn-primary{
+    background:var(--white);color:var(--wine-deep);
+    padding:15px 30px;font-weight:600;font-size:14px;
+    letter-spacing:0.03em;border-radius:2px;
+    transition:background .2s,color .2s;
+  }
+  .btn-primary:hover{background:var(--cream);}
+  .btn-ghost{
+    border:1px solid rgba(255,255,255,0.3);
+    padding:15px 30px;font-weight:600;font-size:14px;
+    letter-spacing:0.03em;border-radius:2px;color:var(--white);
+    transition:border-color .2s;
+  }
+  .btn-ghost:hover{border-color:var(--white);}
+
+  /* SECTION HEADERS */
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:52px;gap:40px;flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-size:clamp(30px,4vw,44px);letter-spacing:-0.01em;
+    max-width:580px;color:var(--wine-deep);
+  }
+  .section-head p{color:var(--charcoal-soft);max-width:340px;font-size:15px;line-height:1.6;}
+
+  /* NOSOTROS - Qué es Don Bosco */
+  .nosotros{padding:120px 0 40px;}
+  .nosotros-intro{display:grid;grid-template-columns:0.9fr 1.1fr;gap:80px;align-items:start;margin-bottom:100px;}
+  .nosotros-visual{
+    background:var(--wine-deep) center/cover no-repeat;
+    aspect-ratio:4/5;border-radius:2px;
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .nosotros-visual::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(27,38,50,0.35), rgba(27,38,50,0.55));
+  }
+  .nosotros-visual-mark{
+    max-width:34%;max-height:34%;width:auto;height:auto;object-fit:contain;
+    filter:brightness(0) invert(1);opacity:0.55;
+    position:relative;z-index:2;
+  }
+  .nosotros-copy h2{font-size:clamp(28px,3.4vw,38px);margin-bottom:24px;color:var(--wine-deep);}
+  .nosotros-copy p{color:var(--charcoal);font-size:16px;line-height:1.75;margin-bottom:18px;max-width:520px;}
+  .nosotros-copy p:last-of-type{margin-bottom:0;}
+
+  /* Historia / Trayectoria / Servicios tabs-like rows */
+  .subsection{margin-bottom:100px;}
+  .subsection-label{
+    font-family:'Inter',sans-serif;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;
+    color:var(--wine);margin-bottom:12px;
+  }
+  .subsection h3{font-size:28px;color:var(--wine-deep);margin-bottom:20px;max-width:900px;}
+  .subsection p{color:var(--charcoal);font-size:16px;line-height:1.75;max-width:900px;}
+
+  /* Trayectoria - centered italic statement */
+  .subsection-trayectoria{
+    text-align:center;position:relative;overflow:hidden;
+    padding:20px 0 60px;
+  }
+  .subsection-trayectoria .subsection-label{display:flex;justify-content:center;}
+  .subsection-trayectoria h3{
+    font-style:italic;font-weight:300;
+    font-size:clamp(32px,4.6vw,54px);
+    max-width:900px;margin-left:auto;margin-right:auto;
+    position:relative;z-index:2;
+  }
+  .trayectoria-typewriter{
+    display:inline-block;
+    border-right:2px solid transparent;
+  }
+  .trayectoria-typewriter.is-typing{
+    border-right-color:var(--wine);
+    animation:caretBlink 0.8s steps(1) infinite;
+  }
+  @keyframes caretBlink{
+    0%, 100%{border-right-color:var(--wine);}
+    50%{border-right-color:transparent;}
+  }
+
+  /* Full-bleed stats band */
+  .stats-band{
+    background:var(--cream-warm);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:64px 0;
+  }
+  .stats-band-grid{
+    display:grid;grid-template-columns:repeat(5,1fr);
+  }
+  .stats-band-item{
+    padding:0 28px;border-left:1px solid var(--line);text-align:left;
+  }
+  .stats-band-item:first-child{border-left:none;}
+  .stats-band-item .num{
+    font-family:'Inter',sans-serif;font-weight:700;
+    font-size:clamp(30px,3.4vw,44px);color:var(--wine);letter-spacing:-0.02em;
+  }
+  .stats-band-item .label{font-size:12.5px;color:var(--charcoal-soft);text-transform:uppercase;letter-spacing:0.05em;margin-top:8px;}
+
+  .servicios-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+    background:var(--line);margin-top:32px;
+  }
+  .servicio-card{
+    background:var(--white);padding:36px 26px;position:relative;overflow:hidden;
+    transition:background .2s;
+  }
+  .servicio-card:hover{background:var(--cream-warm);}
+  .servicio-card .num{
+    font-family:'Public Sans',sans-serif;font-weight:700;
+    font-size:56px;color:var(--wine);opacity:0.14;
+    line-height:1;margin-bottom:18px;
+  }
+  .servicio-card h4{font-size:18px;color:var(--charcoal);margin-bottom:10px;position:relative;z-index:2;}
+  .servicio-card p{color:var(--charcoal-soft);font-size:14px;line-height:1.6;position:relative;z-index:2;}
+
+  /* Pilares */
+  .pilares-grid{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:36px;
+  }
+  .pilar{
+    background:var(--stone-gray);color:var(--cream);padding:36px 22px 30px;
+    border-radius:3px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;
+    min-height:220px;position:relative;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .pilar:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 34px rgba(44,59,77,0.28);
+  }
+  .pilar .icon-badge{
+    width:46px;height:46px;border-radius:50%;
+    background:rgba(236,233,223,0.14);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    margin-top:6px;
+  }
+  .pilar .mark{width:20px;height:20px;opacity:0.95;display:block;}
+  .pilar h4{font-size:17px;color:var(--cream);}
+  .pilar p{font-size:13px;color:rgba(236,233,223,0.72);line-height:1.55;}
+
+  .pilar.has-photo{
+    background:
+      linear-gradient(180deg, rgba(27,38,50,0.55), rgba(27,38,50,0.82)),
+      url('img/sitio/valor-calidad.jpg') center/cover no-repeat;
+  }
+  .pilar.has-photo .icon-badge{background:rgba(255,255,255,0.18);}
+  .pilar.photo-seguridad{background-image:linear-gradient(180deg, rgba(27,38,50,0.55), rgba(27,38,50,0.82)), url('img/sitio/valor-seguridad.jpg');}
+  .pilar.photo-cumplimiento{background-image:linear-gradient(180deg, rgba(27,38,50,0.55), rgba(27,38,50,0.82)), url('img/sitio/valor-cumplimiento.jpg');}
+  .pilar.photo-cercania{background-image:linear-gradient(180deg, rgba(27,38,50,0.55), rgba(27,38,50,0.82)), url('img/sitio/valor-cercania.jpg');}
+  .pilar.photo-equipo{background-image:linear-gradient(180deg, rgba(27,38,50,0.55), rgba(27,38,50,0.82)), url('img/sitio/valor-trabajo-en-equipo.jpg');}
+
+  /* Valores */
+  .valores-section{background:var(--cream-warm);padding:100px 0;}
+  .valores-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:40px;}
+  .valor-card{background:var(--white);padding:32px;border-top:2px solid var(--wine);}
+  .valor-card h4{font-size:17px;color:var(--wine-deep);margin-bottom:10px;}
+  .valor-card p{font-size:14px;color:var(--charcoal-soft);line-height:1.6;}
+
+  /* EQUIPO */
+  .equipo{padding:120px 0;}
+  .equipo-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;}
+  .persona-foto{
+    aspect-ratio:3/4;background:var(--cream-warm);
+    border-radius:2px;margin-bottom:16px;border-bottom:2px solid var(--wine);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .persona-foto svg{width:32px;height:32px;opacity:0.3;color:var(--wine);}
+  .persona-foto.has-foto{display:block;overflow:hidden;background:none;}
+  .persona-foto.has-foto img{width:100%;height:100%;object-fit:cover;display:block;}
+  .persona h4{font-size:15px;color:var(--wine-deep);}
+  .persona span{font-size:12px;color:var(--charcoal-soft);}
+
+  .equipo-carousel-wrap{margin-top:90px;}
+  .equipo-carousel-label{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;gap:20px;flex-wrap:wrap;}
+  .equipo-carousel-label h3{font-size:22px;color:var(--wine-deep);}
+  .equipo-carousel-label span{font-size:13px;color:var(--charcoal-soft);}
+  .equipo-carousel{
+    display:flex;gap:16px;overflow-x:auto;padding-bottom:8px;
+    scroll-snap-type:x proximity;
+  }
+  .carousel-photo{
+    min-width:220px;aspect-ratio:4/5;background:var(--cream-warm) center/cover no-repeat;
+    border-radius:2px;flex-shrink:0;scroll-snap-align:start;
+    border-bottom:2px solid var(--wine);
+  }
+
+  /* PROYECTOS */
+  .proyectos{background:var(--cream-warm);padding:120px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .proyectos-tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap;}
+  .proyectos-tabs span{
+    font-size:12px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;
+    padding:8px 16px;background:var(--white);color:var(--charcoal-soft);border-radius:2px;
+  }
+  .proyectos-tabs span.active{background:var(--wine);color:var(--white);}
+
+  .obra-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+    background:var(--line);
+  }
+  .obra-card{
+    background:var(--white);position:relative;aspect-ratio:4/5;
+    overflow:hidden;cursor:pointer;
+  }
+  .obra-img{
+    position:absolute;inset:0;background-size:cover;background-position:center;
+    transition:transform .4s ease;
+  }
+  .obra-card:hover .obra-img{transform:scale(1.05);}
+  .obra-info{
+    position:absolute;left:0;right:0;bottom:0;padding:22px;
+    background:linear-gradient(to top, rgba(27,38,50,0.92), transparent);
+    color:var(--white);opacity:0;transform:translateY(8px);
+    transition:opacity .3s, transform .3s;
+  }
+  .obra-card:hover .obra-info{opacity:1;transform:translateY(0);}
+  .obra-info .tag{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cream);margin-bottom:6px;}
+  .obra-info h3{font-family:'Inter';font-weight:600;font-size:16px;}
+
+  /* Flip cards - obras en curso */
+  .en-curso-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(210px,1fr));
+    gap:18px;
+  }
+  .obra-info p{
+    margin:4px 0 0;font-size:12.5px;color:var(--charcoal-soft);letter-spacing:0.01em;
+  }
+  .obra-tile{
+    position:relative;aspect-ratio:3/4;cursor:pointer;overflow:hidden;border-radius:3px;
+    background-size:cover;background-position:center;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    transition:transform .35s cubic-bezier(.4,.2,.2,1), box-shadow .35s ease;
+  }
+  .obra-tile::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(27,38,50,0.05) 40%, rgba(27,38,50,0.88));
+  }
+  .obra-tile:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(27,38,50,0.20);}
+  .obra-tile:focus-visible{outline:2px solid var(--wine);outline-offset:3px;}
+  .obra-tile .fc-content{position:relative;z-index:2;padding:20px;}
+  .obra-tile h4{font-size:18px;color:var(--white);}
+  .obra-tile .hint{
+    font-size:11px;color:rgba(255,255,255,0.55);margin-top:6px;transition:color .25s ease;
+  }
+  .obra-tile:hover .hint{color:rgba(255,255,255,0.92);}
+  .estado-badge{
+    display:inline-block;font-size:10.5px;text-transform:uppercase;
+    letter-spacing:0.06em;font-weight:700;padding:4px 10px;border-radius:2px;
+    margin-bottom:10px;color:var(--white);
+  }
+  .estado-badge.por-iniciar{background:rgba(255,255,255,0.22);}
+  .estado-badge.en-construccion{background:var(--wine);}
+  .estado-badge.sin-definir{background:rgba(255,255,255,0.14);border:1px dashed rgba(255,255,255,0.5);}
+
+  .clientes-carousel-wrap{
+    display:flex;align-items:center;gap:12px;margin-top:16px;
+  }
+  .clientes-carousel{
+    display:flex;gap:2px;overflow-x:auto;scroll-snap-type:x mandatory;
+    background:var(--line);flex:1;scroll-behavior:smooth;
+    -ms-overflow-style:none;scrollbar-width:none;
+  }
+  .clientes-carousel::-webkit-scrollbar{display:none;}
+  .cliente-logo{
+    background:var(--white);flex:0 0 190px;height:112px;
+    display:flex;align-items:center;justify-content:center;padding:22px;
+    scroll-snap-align:start;
+  }
+  .cliente-logo img{max-width:130px;max-height:50px;width:auto;height:auto;object-fit:contain;}
+  .clientes-nav{
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--white);color:var(--wine-deep);font-size:20px;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    transition:background .2s, border-color .2s;
+  }
+  .clientes-nav:hover{background:var(--cream-warm);border-color:var(--wine);}
+
+  /* CONTACTO */
+  .contacto{background:var(--white);color:var(--wine-deep);padding:120px 0;position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .contacto-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;position:relative;z-index:2;}
+  .contacto-info h2{font-size:clamp(30px,4vw,44px);margin-bottom:22px;color:var(--wine-deep);}
+  .contacto-info p{color:var(--charcoal);font-size:16px;line-height:1.7;max-width:420px;margin-bottom:44px;}
+  .contacto-detail{display:flex;gap:16px;margin-bottom:26px;}
+  .contacto-detail .k{font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--charcoal-soft);width:100px;flex-shrink:0;padding-top:2px;}
+  .contacto-detail .v{font-size:16px;color:var(--wine-deep);font-weight:600;}
+  .contacto-detail .v a:hover{color:var(--wine);}
+
+  form{display:flex;flex-direction:column;gap:20px;}
+  .field label{font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--charcoal-soft);display:block;margin-bottom:8px;}
+  .field input, .field textarea{
+    width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);
+    color:var(--wine-deep);font-family:'Inter';font-size:16px;padding:10px 0;
+    outline:none;transition:border-color .2s;resize:none;
+  }
+  .field input::placeholder, .field textarea::placeholder{color:var(--charcoal-soft);opacity:0.6;}
+  .field input:focus, .field textarea:focus{border-color:var(--wine);}
+  .campo-oculto{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .form-estado{font-size:14px;line-height:1.5;margin:0;min-height:1px;}
+  .form-estado.ok{color:var(--wine);font-weight:600;}
+  .form-estado.error{color:var(--charcoal);}
+  .form-estado a{color:var(--wine);text-decoration:underline;}
+  form .btn-primary{
+    align-self:flex-start;margin-top:12px;border:none;cursor:pointer;
+    background:var(--wine);color:var(--white);
+  }
+  form .btn-primary:hover{background:var(--wine-deep);}
+
+  footer{background:var(--stone-gray);padding:36px 0;border-top:1px solid rgba(255,255,255,0.1);}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-row img{height:34px;}
+  .footer-row .fine{font-size:13px;color:rgba(255,255,255,0.65);}
+
+  @media (max-width:860px){
+    nav ul{display:none;}
+    .nosotros-intro{grid-template-columns:1fr;gap:44px;}
+    .stats-band-grid{grid-template-columns:repeat(2,1fr);row-gap:28px;}
+    .stats-band-item{border-left:none;padding:0;}
+    .equipo-carousel{gap:12px;}
+    .carousel-photo{min-width:160px;}
+    .servicios-grid{grid-template-columns:1fr;}
+    .pilares-grid{grid-template-columns:repeat(2,1fr);}
+    .valores-grid{grid-template-columns:1fr;}
+    .equipo-grid{grid-template-columns:repeat(2,1fr);}
+    .obra-grid{grid-template-columns:repeat(2,1fr);}
+    .clientes-carousel-wrap{gap:8px;}
+    .cliente-logo{flex:0 0 140px;height:88px;padding:14px;}
+    .cliente-logo img{max-width:100px;max-height:38px;}
+    .clientes-nav{width:36px;height:36px;font-size:16px;}
+    .contacto-layout{grid-template-columns:1fr;gap:56px;}
+    .section-head{flex-direction:column;align-items:flex-start;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+  /* OBRA DETAIL OVERLAY */
+  .obra-overlay{
+    position:fixed;inset:0;z-index:1000;
+    background:rgba(27,38,50,0.92);
+    display:flex;padding:40px 20px;
+    opacity:0;visibility:hidden;
+    transition:opacity .3s ease, visibility .3s ease;
+    overflow-y:auto;
+  }
+  .obra-overlay.is-open{opacity:1;visibility:visible;}
+  .obra-overlay-inner{
+    background:var(--cream);max-width:1000px;width:100%;
+    border-radius:4px;position:relative;margin:auto;
+    transform:translateY(20px);transition:transform .35s ease;
+  }
+  .obra-overlay.is-open .obra-overlay-inner{transform:translateY(0);}
+  .obra-overlay-close{
+    position:absolute;top:20px;right:20px;z-index:5;
+    width:44px;height:44px;border-radius:50%;
+    background:rgba(27,38,50,0.55);color:#fff;border:none;
+    font-size:20px;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s;
+  }
+  .obra-overlay-close:hover{background:var(--wine);}
+  .obra-overlay-hero{
+    aspect-ratio:16/7;background-size:cover;background-position:center;
+    border-radius:4px 4px 0 0;position:relative;background-color:var(--wine-deep);
+  }
+  .obra-overlay-hero::after{
+    content:'';position:absolute;inset:0;border-radius:4px 4px 0 0;
+    background:linear-gradient(180deg, rgba(27,38,50,0.08), rgba(27,38,50,0.6));
+  }
+  .obra-overlay-hero-caption{
+    position:absolute;left:40px;bottom:24px;z-index:2;color:var(--white);
+  }
+  .obra-overlay-hero-caption .estado-badge{margin-bottom:10px;}
+  .obra-overlay-hero-caption h2{font-size:clamp(24px,3.2vw,34px);color:var(--white);}
+  .obra-overlay-hero-caption .ubic{font-size:14px;color:rgba(255,255,255,0.8);margin-top:4px;}
+  .obra-overlay-body{padding:40px 44px 52px;}
+  .obra-overlay-specs{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:transparent;
+    margin-bottom:44px;
+  }
+  .obra-overlay-specs .spec{background:var(--white);padding:20px;box-shadow:0 0 0 1px var(--line);}
+  .obra-overlay-specs .spec .k{font-size:10.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--charcoal-soft);margin-bottom:6px;}
+  .obra-overlay-specs .spec .v{font-size:14px;color:var(--wine-deep);font-weight:600;line-height:1.4;}
+  .obra-overlay-section{margin-bottom:44px;}
+  .obra-overlay-section:last-child{margin-bottom:0;}
+  .obra-overlay-section h3{
+    font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:var(--wine);font-weight:800;margin-bottom:18px;
+  }
+  .amenities-list{display:flex;flex-wrap:wrap;gap:10px;}
+  .amenities-list span{background:var(--white);border:1px solid var(--line);padding:9px 16px;border-radius:20px;font-size:13px;color:var(--charcoal);}
+  .obra-overlay-gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .obra-overlay-gallery-grid.planos{grid-template-columns:repeat(2,1fr);}
+  .gallery-tile{
+    aspect-ratio:4/3;border-radius:2px;overflow:hidden;position:relative;
+    background:var(--cream-warm);
+  }
+  .gallery-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+  .gallery-tile.placeholder{
+    border:1px dashed var(--line);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;color:var(--charcoal-soft);text-align:center;padding:16px;
+  }
+  .gallery-tile.placeholder svg{width:24px;height:24px;opacity:0.4;}
+  .gallery-tile.placeholder span{font-size:11.5px;line-height:1.4;}
+  .obra-overlay-contact{
+    background:var(--wine-deep);color:var(--white);padding:28px 32px;border-radius:3px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  }
+  .obra-overlay-contact p{font-size:14.5px;color:rgba(255,255,255,0.8);max-width:380px;line-height:1.5;}
+  .obra-overlay-contact a{
+    background:var(--wine);color:var(--white);padding:12px 22px;font-size:13px;font-weight:600;
+    letter-spacing:0.03em;border-radius:2px;text-transform:uppercase;white-space:nowrap;
+    transition:background .2s;
+  }
+  .obra-overlay-contact a:hover{background:var(--wine-soft);}
+  .obra-detail-btn{
+    background:transparent;border:1px solid rgba(255,255,255,0.35);color:var(--white);
+    padding:10px 18px;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;font-weight:600;
+    border-radius:2px;cursor:pointer;transition:border-color .2s, background .2s;
+    align-self:flex-start;margin-top:6px;
+  }
+  .obra-detail-btn:hover{border-color:var(--white);background:rgba(255,255,255,0.1);}
+  body.obra-overlay-active{overflow:hidden;}
+
+  @media (max-width:760px){
+    .obra-overlay-specs{grid-template-columns:repeat(2,1fr);}
+    .obra-overlay-gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .obra-overlay-gallery-grid.planos{grid-template-columns:1fr;}
+    .obra-overlay-body{padding:30px 22px 40px;}
+    .obra-overlay-hero-caption{left:20px;bottom:16px;}
+    .obra-overlay-contact{flex-direction:column;align-items:flex-start;}
+  }
+
+  /* --- Galería real de la ficha de obra (renders + planos) --- */
+  .gallery-tile.has-img{cursor:zoom-in;background:var(--cream-warm);}
+  .gallery-tile.has-img img{transition:transform .45s ease;}
+  .gallery-tile.has-img:hover img{transform:scale(1.04);}
+  .gallery-tile .cap{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:18px 12px 9px;
+    background:linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0));
+    color:#fff;font-size:11.5px;letter-spacing:0.03em;
+    opacity:0;transition:opacity .25s ease;pointer-events:none;
+  }
+  .gallery-tile.has-img:hover .cap{opacity:1;}
+  .obra-overlay-gallery-grid.planos{align-items:start;}
+  .gallery-tile.plano{aspect-ratio:auto;background:#fff;border:1px solid var(--line);padding:10px 10px 0;}
+  .gallery-tile.plano img{height:auto;object-fit:contain;}
+  .gallery-tile.plano .cap{
+    opacity:1;background:none;color:var(--charcoal-soft);
+    text-transform:uppercase;font-weight:600;font-size:10.5px;
+    padding:8px 10px;text-align:center;
+  }
+  .gallery-tile.plano:hover{border-color:var(--charcoal-soft);}
+
+  /* --- Lightbox --- */
+  .lightbox{
+    position:fixed;inset:0;z-index:400;background:rgba(12,12,12,0.94);
+    display:none;align-items:center;justify-content:center;padding:40px 60px;
+  }
+  .lightbox.is-open{display:flex;}
+  .lightbox img{max-width:100%;max-height:82vh;object-fit:contain;display:block;}
+  .lightbox-cap{
+    position:absolute;bottom:26px;left:0;right:0;text-align:center;
+    color:rgba(255,255,255,0.75);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;
+  }
+  .lightbox-close,.lightbox-nav{
+    position:absolute;background:none;border:none;color:#fff;cursor:pointer;
+    font-size:26px;line-height:1;padding:12px;opacity:0.6;transition:opacity .2s;
+  }
+  .lightbox-close:hover,.lightbox-nav:hover{opacity:1;}
+  .lightbox-close{top:18px;right:22px;}
+  .lightbox-nav.prev{left:12px;top:50%;transform:translateY(-50%);font-size:34px;}
+  .lightbox-nav.next{right:12px;top:50%;transform:translateY(-50%);font-size:34px;}
+  @media (max-width:760px){
+    .lightbox{padding:20px 12px;}
+    .lightbox-nav{font-size:26px;}
+  }
+
+  /* --- Franja de obras destacadas, debajo del hero --- */
+  .destacadas{background:var(--cream);padding:64px 0 72px;border-bottom:1px solid var(--line);}
+  .destacadas-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:24px;flex-wrap:wrap;margin-bottom:26px;
+  }
+  .destacadas-head .dim{
+    text-transform:uppercase;letter-spacing:0.14em;font-size:11px;
+    color:var(--charcoal-soft);font-weight:600;
+  }
+  .destacadas-head a{
+    font-size:13px;color:var(--wine);text-decoration:none;letter-spacing:0.02em;
+    border-bottom:1px solid transparent;transition:border-color .2s;
+  }
+  .destacadas-head a:hover{border-bottom-color:var(--wine);}
+  .destacadas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .destacada{
+    position:relative;border:none;background:none;padding:0;text-align:left;
+    cursor:pointer;font:inherit;color:inherit;overflow:hidden;
+  }
+  .destacada .ph{
+    aspect-ratio:4/3;overflow:hidden;background:var(--cream-warm);
+  }
+  .destacada .ph img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s ease;
+  }
+  .destacada:hover .ph img{transform:scale(1.045);}
+  .destacada .meta{padding:14px 2px 0;}
+  .destacada .meta h4{
+    margin:0 0 3px;font-size:16px;font-weight:600;color:var(--charcoal);letter-spacing:-0.01em;
+  }
+  .destacada .meta span{font-size:12.5px;color:var(--charcoal-soft);}
+  .destacada .flag{
+    position:absolute;top:12px;left:12px;
+    background:rgba(27,38,50,0.82);color:#fff;
+    font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+    padding:5px 9px;font-weight:600;
+  }
+  @media (max-width:860px){
+    .destacadas-grid{grid-template-columns:1fr;gap:26px;}
+  }
+
+  /* --- Credenciales arriba de la grilla de proyectos --- */
+  /* --- Chip que aclara que la imagen es un render y no una foto --- */
+  .gallery-tile .render-chip{
+    position:absolute;top:9px;left:9px;z-index:2;
+    background:rgba(27,38,50,0.78);color:#fff;
+    font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;
+    padding:4px 8px;font-weight:600;pointer-events:none;
+  }
+  /* Obras ocultas por el momento: sacar la clase "oculta" del elemento para volver a mostrarlo */
+  .oculta{display:none !important;}
+</style>
+</head>
+<body>
+
+<div class="obra-overlay" id="obraOverlay" onclick="if(event.target===this) closeObraDetail()">
+  <div class="obra-overlay-inner">
+    <button class="obra-overlay-close" onclick="closeObraDetail()" aria-label="Cerrar">&#10005;</button>
+    <div class="obra-overlay-hero" id="obraOverlayHero">
+      <div class="obra-overlay-hero-caption">
+        <span class="estado-badge" id="obraOverlayEstado"></span>
+        <h2 id="obraOverlayNombre"></h2>
+        <div class="ubic" id="obraOverlayUbicacion"></div>
+      </div>
+    </div>
+    <div class="obra-overlay-body">
+      <div class="obra-overlay-specs" id="obraOverlaySpecs"></div>
+
+      <div class="obra-overlay-section" id="obraOverlayAmenitiesWrap" style="display:none;">
+        <h3>Amenities</h3>
+        <div class="amenities-list" id="obraOverlayAmenities"></div>
+      </div>
+
+      <div class="obra-overlay-section">
+        <h3>Renders y fotos</h3>
+        <div class="obra-overlay-gallery-grid" id="obraOverlayGallery"></div>
+      </div>
+
+      <div class="obra-overlay-section" id="obraOverlayPlanosWrap">
+        <h3>Planos</h3>
+        <div class="obra-overlay-gallery-grid planos" id="obraOverlayPlanos"></div>
+      </div>
+
+      <div class="obra-overlay-contact">
+        <p>&#191;Quer&eacute;s m&aacute;s informaci&oacute;n sobre esta obra?</p>
+        <a href="#contacto" onclick="closeObraDetail()">Consultar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="lightbox" id="lightbox" onclick="if(event.target===this) closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">&#10005;</button>
+  <button class="lightbox-nav prev" onclick="event.stopPropagation(); stepLightbox(-1)" aria-label="Anterior">&#8249;</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav next" onclick="event.stopPropagation(); stepLightbox(1)" aria-label="Siguiente">&#8250;</button>
+  <div class="lightbox-cap" id="lightboxCap"></div>
+</div>
+
+<header>
+  <nav>
+    <a href="#inicio" class="logo"><img src="img/sitio/logo-don-bosco.png" alt="Don Bosco Construcciones"></a>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+    </ul>
+    <a href="#contacto" class="cta">Contactar</a>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-bg-slideshow" id="heroSlideshow">
+    <div class="hero-bg-slide is-active" style="background-image:url('img/hero/hero-01.jpg');"></div>
+    <div class="hero-bg-slide" data-bg="img/hero/hero-02.jpg"></div>
+    <div class="hero-bg-slide" data-bg="img/hero/hero-03.jpg"></div>
+    <div class="hero-bg-slide" data-bg="img/hero/hero-04.jpg"></div>
+    <div class="hero-bg-slide" data-bg="img/hero/hero-05.jpg"></div>
+    <div class="hero-bg-slide" data-bg="img/hero/hero-06.jpg"></div>
+    <div class="hero-bg-slide" data-bg="img/hero/hero-07.jpg"></div>
+    <div class="hero-bg-slide" data-bg="img/hero/hero-08.jpg"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="wrap">
+    <h1>Construimos lo que <em>perdura.</em></h1>
+    <p>Ejecutamos proyectos con la cercanía, la lealtad y la profesionalidad de una constructora familiar.</p>
+    <div class="hero-actions">
+      <a href="#proyectos" class="btn-primary">Ver nuestros proyectos</a>
+      <a href="#contacto" class="btn-ghost">Trabajemos juntos</a>
+    </div>
+  </div>
+</section>
+
+<section class="destacadas">
+  <div class="wrap">
+    <div class="destacadas-head">
+      <div class="dim">Obras destacadas</div>
+      <a href="#proyectos">Ver todas las obras &rarr;</a>
+    </div>
+    <div class="destacadas-grid">
+        <button class="destacada" onclick="openObraDetail('huidobro')">
+          <div class="ph"><img src="img/destacadas/huidobro.jpg" alt="Casa Huidobro" loading="lazy"></div>
+          <span class="flag">En obra</span>
+          <div class="meta"><h4>Casa Huidobro</h4><span>Saavedra, CABA</span></div>
+        </button>
+        <!-- OCULTA por el momento: para volver a mostrarla, sacar la clase "oculta" -->
+        <button class="destacada oculta" onclick="openObraDetail('cordoba4309')">
+          <div class="ph"><img src="img/destacadas/cordoba4309.jpg" alt="Av. Córdoba 4309" loading="lazy"></div>
+          <span class="flag">En obra</span>
+          <div class="meta"><h4>Av. Córdoba 4309</h4><span>Palermo, CABA</span></div>
+        </button>
+        <button class="destacada" onclick="openObraDetail('sucre')">
+          <div class="ph"><img src="img/destacadas/sucre.jpg" alt="Casa Sucre" loading="lazy"></div>
+          <span class="flag">En obra</span>
+          <div class="meta"><h4>Casa Sucre</h4><span>Belgrano, CABA</span></div>
+        </button>
+        <button class="destacada" onclick="openObraDetail('vistana')">
+          <div class="ph"><img src="img/destacadas/vistana.jpg" alt="Edificio Vistana" loading="lazy"></div>
+          <span class="flag">En obra</span>
+          <div class="meta"><h4>Edificio Vistana</h4><span>Nuevo Bella Vista, Bella Vista</span></div>
+        </button>
+    </div>
+  </div>
+</section>
+
+<section class="nosotros" id="nosotros">
+  <div class="wrap">
+
+    <div class="nosotros-intro">
+      <div class="nosotros-visual" id="nosotrosVisual" style="background-image:url('img/sitio/nosotros-fondo.jpg');background-size:cover;background-position:center;">
+        <img src="img/sitio/nosotros-marca.png" class="nosotros-visual-mark" alt="Don Bosco Construcciones">
+      </div>
+      <div class="nosotros-copy">
+        <div class="dim">Quiénes somos</div>
+        <h2>Una constructora familiar dedicada a la ejecución de obra.</h2>
+        <p>Somos una empresa con una sólida experiencia en el mercado. Ofrecemos un servicio integral a nuestros clientes haciendo foco en calidad, seguridad y confiabilidad para ofrecer un proceso donde la eficiencia y el compromiso sean pilares.</p>
+        <p>En Don Bosco valoramos el compartir junto a nuestros clientes la satisfacción y orgullo de ver los proyectos terminados, sabiendo que estos no son meros edificios, sino espacios que cambian vidas de quienes los habitan.</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Historia</div>
+      <h3>Empezamos con una obra y un apellido. Seguimos con cientos.</h3>
+      <p>Don Bosco Construcciones nació de la idea de que una obra bien ejecutada es la mejor carta de presentación. Con cada proyecto fuimos ganando la confianza de los desarrolladores para asumir obras más grandes y más complejas, sin perder nunca la lógica del primer día: estar presentes en la obra y responder por lo que entregamos.</p>
+    </div>
+
+    <div class="subsection subsection-trayectoria">
+      <div class="subsection-label">Trayectoria</div>
+      <h3><span class="trayectoria-typewriter" data-text="Más de tres décadas ejecutando obra para terceros.">Más de tres décadas ejecutando obra para terceros.</span></h3>
+    </div>
+  </div>
+</section>
+
+<section class="stats-band">
+  <div class="wrap">
+    <div class="stats-band-grid">
+      <div class="stats-band-item"><div class="num" data-count="30" data-suffix="+">30+</div><div class="label">Años de trayectoria</div></div>
+      <div class="stats-band-item"><div class="num" data-count="40" data-suffix="">40</div><div class="label">Obras ejecutadas</div></div>
+      <div class="stats-band-item"><div class="num" data-count="175" data-suffix=" mil">175 mil</div><div class="label">M² construidos</div></div>
+      <div class="stats-band-item"><div class="num" data-count="30" data-suffix="+">30+</div><div class="label">Desarrolladores atendidos</div></div>
+      <div class="stats-band-item"><div class="num" data-count="100" data-suffix="%">100%</div><div class="label">Obras en tiempo y forma</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="proyectos" id="proyectos">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Nuestros proyectos</h2>
+      <p>Obra ejecutada para distintos desarrolladores, en distintas etapas.</p>
+    </div>
+
+    <div class="subsection-label">Obras en curso</div>
+    <div class="en-curso-grid" style="margin-top:16px;margin-bottom:80px;">
+
+      <div class="obra-tile" data-obra="huidobro" role="button" tabindex="0"
+           data-bg="img/tarjetas/huidobro.jpg"
+           onclick="openObraDetail('huidobro')"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openObraDetail('huidobro');}">
+        <div class="fc-content">
+          <span class="estado-badge en-construccion">En construcción</span>
+          <h4>Casa Huidobro</h4>
+          <div class="hint">Ver ficha completa &rarr;</div>
+        </div>
+      </div>
+
+      <!-- OCULTA por el momento: para volver a mostrarla, sacar la clase "oculta" -->
+      <div class="obra-tile oculta" data-obra="juncal" role="button" tabindex="0"
+           data-bg="img/tarjetas/juncal.jpg"
+           onclick="openObraDetail('juncal')"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openObraDetail('juncal');}">
+        <div class="fc-content">
+          <span class="estado-badge por-iniciar">Por iniciar</span>
+          <h4>Casa Juncal</h4>
+          <div class="hint">Ver ficha completa &rarr;</div>
+        </div>
+      </div>
+
+      <div class="obra-tile" data-obra="larrea" role="button" tabindex="0"
+           data-bg="img/tarjetas/larrea.jpg"
+           onclick="openObraDetail('larrea')"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openObraDetail('larrea');}">
+        <div class="fc-content">
+          <span class="estado-badge por-iniciar">Por iniciar</span>
+          <h4>Casa Larrea</h4>
+          <div class="hint">Ver ficha completa &rarr;</div>
+        </div>
+      </div>
+
+      <div class="obra-tile" data-obra="cacique" role="button" tabindex="0"
+           data-bg="img/tarjetas/cacique.jpg"
+           onclick="openObraDetail('cacique')"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openObraDetail('cacique');}">
+        <div class="fc-content">
+          <span class="estado-badge en-construccion">En construcción</span>
+          <h4>Complejo Cacique</h4>
+          <div class="hint">Ver ficha completa &rarr;</div>
+        </div>
+      </div>
+
+      <div class="obra-tile" data-obra="scalabrini550" role="button" tabindex="0"
+           data-bg="img/tarjetas/scalabrini550.jpg"
+           onclick="openObraDetail('scalabrini550')"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openObraDetail('scalabrini550');}">
+        <div class="fc-content">
+          <span class="estado-badge en-construccion">En construcción</span>
+          <h4>Scalabrini Ortiz 550</h4>
+          <div class="hint">Ver ficha completa &rarr;</div>
+        </div>
+      </div>
+
+      <!-- OCULTA por el momento: para volver a mostrarla, sacar la clase "oculta" -->
+      <div class="obra-tile oculta" data-obra="cordoba4309" role="button" tabindex="0"
+           data-bg="img/tarjetas/cordoba4309.jpg"
+           onclick="openObraDetail('cordoba4309')"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openObraDetail('cordoba4309');}">
+        <div class="fc-content">
+          <span class="estado-badge por-iniciar">Por iniciar</span>
+          <h4>Av. Córdoba 4309</h4>
+          <div class="hint">Ver ficha completa &rarr;</div>
+        </div>
+      </div>
+
+      <div class="obra-tile" data-obra="vistana" role="button" tabindex="0"
+           data-bg="img/tarjetas/vistana.jpg"
+           onclick="openObraDetail('vistana')"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openObraDetail('vistana');}">
+        <div class="fc-content">
+          <span class="estado-badge en-construccion">En construcción</span>
+          <h4>Edificio Vistana</h4>
+          <div class="hint">Ver ficha completa &rarr;</div>
+        </div>
+      </div>
+
+      <div class="obra-tile" data-obra="sucre" role="button" tabindex="0"
+           data-bg="img/tarjetas/sucre.jpg"
+           onclick="openObraDetail('sucre')"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openObraDetail('sucre');}">
+        <div class="fc-content">
+          <span class="estado-badge en-construccion">En construcción</span>
+          <h4>Casa Sucre</h4>
+          <div class="hint">Ver ficha completa &rarr;</div>
+        </div>
+      </div>
+
+      <div class="obra-tile" data-obra="aimara" role="button" tabindex="0"
+           data-bg="img/tarjetas/aimara.jpg"
+           onclick="openObraDetail('aimara')"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openObraDetail('aimara');}">
+        <div class="fc-content">
+          <span class="estado-badge en-construccion">En construcción</span>
+          <h4>Edificio Aimará</h4>
+          <div class="hint">Ver ficha completa &rarr;</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="subsection-label">Obras terminadas</div>
+    <div class="obra-grid" style="margin-top:16px;margin-bottom:80px;">
+      <div class="obra-card" onclick="openObraDetail('alberdi833')" style="cursor:pointer;">
+        <div class="obra-img" data-bg="img/tarjetas/alberdi833.jpg"></div>
+        <div class="obra-info"><div class="tag">Residencial</div><h3>Alberdi 833</h3><p>Av. Juan Bautista Alberdi 833, CABA</p></div>
+      </div>
+      <div class="obra-card" onclick="openObraDetail('arricau')" style="cursor:pointer;">
+        <div class="obra-img" data-bg="img/tarjetas/arricau.jpg"></div>
+        <div class="obra-info"><div class="tag">Comercial y residencial</div><h3>Paseo Arricau</h3><p>Av. Torcuato de Alvear 251, Don Torcuato</p></div>
+      </div>
+      <div class="obra-card" onclick="openObraDetail('maure4008')" style="cursor:pointer;">
+        <div class="obra-img" data-bg="img/tarjetas/maure4008.jpg"></div>
+        <div class="obra-info"><div class="tag">Residencial</div><h3>Maure 4008</h3><p>Maure 4008, CABA</p></div>
+      </div>
+      <div class="obra-card" onclick="openObraDetail('corrientes3401')" style="cursor:pointer;">
+        <div class="obra-img" data-bg="img/tarjetas/corrientes3401.jpg"></div>
+        <div class="obra-info"><div class="tag">Residencial</div><h3>Av. Corrientes 3401</h3><p>Av. Corrientes 3401, CABA</p></div>
+      </div>
+      <div class="obra-card" onclick="openObraDetail('beruti')" style="cursor:pointer;">
+        <div class="obra-img" data-bg="img/tarjetas/beruti.jpg"></div>
+        <div class="obra-info"><div class="tag">Residencial</div><h3>Beruti 2783</h3><p>Beruti 2783, CABA</p></div>
+      </div>
+      <div class="obra-card" onclick="openObraDetail('hotel_iru')" style="cursor:pointer;">
+        <div class="obra-img" data-bg="img/tarjetas/hotel-iru.jpg"></div>
+        <div class="obra-info"><div class="tag">Hotelería</div><h3>Hotel Irú</h3><p>Puerto Iguazú, Provincia de Misiones</p></div>
+      </div>
+    </div>
+
+    <div class="subsection-label">Con quiénes trabajamos</div>
+    <div class="clientes-carousel-wrap">
+      <button class="clientes-nav prev" onclick="scrollClientes(-1)" aria-label="Clientes anteriores">&#8249;</button>
+      <div class="clientes-carousel" id="clientesCarousel">
+        <div class="cliente-logo"><img src="img/clientes/grupo-briones.png" alt="Grupo Briones" loading="lazy"></div>
+        <div class="cliente-logo"><img src="img/clientes/grupo-1880-milochoochenta.png" alt="Grupo 1880 Milochoochenta" loading="lazy"></div>
+        <div class="cliente-logo"><img src="img/clientes/larguia-arquitectos.png" alt="Larguia Arquitectos" loading="lazy"></div>
+        <div class="cliente-logo"><img src="img/clientes/bah-arquitectos.png" alt="BAH Arquitectos" loading="lazy"></div><div class="cliente-logo"><img src="img/clientes/bma.png" alt="BMA" loading="lazy"></div>
+        <div class="cliente-logo"><img src="img/clientes/cliente.png" alt="Cliente" loading="lazy"></div>
+        <div class="cliente-logo"><img src="img/clientes/cacique.png" alt="Cacique" loading="lazy"></div>
+        <div class="cliente-logo"><img src="img/clientes/landes-desarrollos.png" alt="Landes Desarrollos" loading="lazy"></div>
+        <div class="cliente-logo"><img src="img/clientes/accor.png" alt="Accor" loading="lazy"></div>
+      </div>
+      <button class="clientes-nav next" onclick="scrollClientes(1)" aria-label="Clientes siguientes">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+<section class="nosotros" style="padding-top:100px;">
+  <div class="wrap">
+
+    <div class="subsection">
+      <div class="subsection-label">Servicio</div>
+      <h3>Qué hacemos</h3>
+      <div class="servicios-grid">
+        <div class="servicio-card">
+          <div class="num">01</div>
+          <h4>Construcción</h4>
+          <p>Obras de 3.000 m² a 30.000 m², donde en su gran mayoría son viviendas multifamiliares.</p>
+        </div>
+        <div class="servicio-card">
+          <div class="num">02</div>
+          <h4>Gerenciamiento</h4>
+          <p>Nos encargamos del desarrollo y ejecución integral de cada proyecto.</p>
+        </div>
+        <div class="servicio-card">
+          <div class="num">03</div>
+          <h4>Asistencia técnica</h4>
+          <p>Nuestro equipo multidisciplinario aporta a la solución de problemas en forma activa y concreta.</p>
+        </div>
+        <div class="servicio-card">
+          <div class="num">04</div>
+          <h4>Finalización y control</h4>
+          <p>Realizamos una supervisión continua a lo largo del desarrollo para que, al momento de entregar la obra, tenga el estándar de calidad que esperamos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-bottom:0;">
+      <div class="subsection-label">Cómo trabajamos</div>
+      <h3>Nuestros valores</h3>
+      <div class="pilares-grid">
+        <div class="pilar has-photo">
+          <div class="icon-badge"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="#ECE9DF" stroke-width="1.4"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+          <h4>Calidad</h4>
+          <p>Nuestra forma de trabajar se basa en nuestros pilares de profesionalismo, honestidad y compromiso.</p>
+        </div>
+        <div class="pilar has-photo photo-seguridad">
+          <div class="icon-badge"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="#ECE9DF" stroke-width="1.4"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg></div>
+          <h4>Seguridad</h4>
+          <p>Valoramos y cuidamos a nuestros trabajadores, cumpliendo siempre los protocolos de seguridad.</p>
+        </div>
+        <div class="pilar has-photo photo-cumplimiento">
+          <div class="icon-badge"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="#ECE9DF" stroke-width="1.4"><rect x="3" y="4" width="18" height="17" rx="1"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+          <h4>Cumplimiento</h4>
+          <p>Cada desafío asumido es una responsabilidad que tomamos en conjunto para llegar al objetivo en tiempo y forma.</p>
+        </div>
+        <div class="pilar has-photo photo-cercania">
+          <div class="icon-badge"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="#ECE9DF" stroke-width="1.4"><path d="M20.8 8.6a4.6 4.6 0 00-7.8-3.3L12 6.3l-1-1a4.6 4.6 0 00-7.8 3.3c0 1.5.7 2.8 1.8 3.7l7 6.6 7-6.6c1.1-.9 1.8-2.2 1.8-3.7z"/></svg></div>
+          <h4>Cercanía</h4>
+          <p>Mantenemos un diálogo constante en cada etapa de trabajo.</p>
+        </div>
+        <div class="pilar has-photo photo-equipo">
+          <div class="icon-badge"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="#ECE9DF" stroke-width="1.4"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20v-1a6 6 0 0112 0v1M14 14a4.5 4.5 0 018 3v1"/></svg></div>
+          <h4>Trabajo en equipo</h4>
+          <p>Fomentamos la colaboración para lograr mejores resultados.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="equipo" id="equipo">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>El equipo</h2>
+      <p>Gente que conoce la obra, no solo el plano.</p>
+    </div>
+    <div class="equipo-grid">
+      <div class="persona">
+        <div class="persona-foto has-foto"><img src="img/equipo/juan-lemos.jpg" alt="Ing. Juan Lemos" loading="lazy"></div>
+        <h4>Ing. Juan Lemos</h4>
+        <span>Presidente, CEO</span>
+      </div>
+      <div class="persona">
+        <div class="persona-foto has-foto"><img src="img/equipo/mariano-cingolani.jpg" alt="Mariano Cingolani" loading="lazy"></div>
+        <h4>Mariano Cingolani</h4>
+        <span>COO</span>
+      </div>
+      <div class="persona">
+        <div class="persona-foto has-foto"><img src="img/equipo/victor-benitez.jpg" alt="Victor Hugo Benitez Uzcat" loading="lazy"></div>
+        <h4>Victor Hugo Benitez Uzcat</h4>
+        <span>Ingeniero</span>
+      </div>
+      <div class="persona">
+        <div class="persona-foto has-foto"><img src="img/equipo/victoria-tartaglia.jpg" alt="Victoria Tartaglia" loading="lazy"></div>
+        <h4>Victoria Tartaglia</h4>
+        <span>Arquitecta</span>
+      </div>
+      <div class="persona">
+        <div class="persona-foto has-foto"><img src="img/equipo/gabriela-varela.jpg" alt="Gabriela Varela" loading="lazy"></div>
+        <h4>Gabriela Varela</h4>
+        <span>CFO</span>
+      </div>
+    </div>
+
+    <div class="equipo-carousel-wrap">
+      <div class="equipo-carousel-label">
+        <h3>Nuestro equipo en obra</h3>
+      </div>
+      <div class="equipo-carousel" data-bg-group>
+        <div class="carousel-photo" data-bg="img/sitio/equipo-en-obra-1.jpg"></div>
+        <div class="carousel-photo" data-bg="img/sitio/equipo-en-obra-2.jpg"></div>
+        <div class="carousel-photo" data-bg="img/sitio/equipo-en-obra-3.jpg"></div>
+        <div class="carousel-photo" data-bg="img/sitio/equipo-en-obra-4.jpg"></div>
+        <div class="carousel-photo" data-bg="img/sitio/equipo-en-obra-5.jpg"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="wrap">
+    <div class="contacto-layout">
+      <div class="contacto-info">
+        <h2>Contanos tu proyecto</h2>
+        <p>Escribinos y te respondemos con una propuesta de ejecución o una visita a obra, según lo que necesites.</p>
+        <div class="contacto-detail"><div class="k">Teléfono</div><div class="v"><a href="tel:+541100000000">+54 11 0000-0000</a></div></div>
+        <div class="contacto-detail"><div class="k">Email</div><div class="v"><a href="mailto:Info@construccionesdb.com">Info@construccionesdb.com</a></div></div>
+        <div class="contacto-detail"><div class="k">Zona</div><div class="v">Buenos Aires y alrededores</div></div>
+        <div class="contacto-detail"><div class="k">Dirección</div><div class="v">Tucumán 141, CABA</div></div>
+      </div>
+      <!-- Formulario conectado a Netlify Forms: al publicar en Netlify hay que activar
+           "Enable form detection" y cargar el mail en Notificaciones. El campo "bot-field"
+           es una trampa antispam: queda oculto y solo lo completan los robots. -->
+      <form id="formContacto" name="contacto" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contacto">
+        <p class="campo-oculto"><label>No completar este campo: <input name="bot-field"></label></p>
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="field">
+          <label for="mensaje">Contanos tu proyecto</label>
+          <textarea id="mensaje" name="mensaje" rows="4" placeholder="Tipo de obra, ubicación, plazos aproximados..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Enviar consulta</button>
+        <p id="formEstado" class="form-estado" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <img src="img/sitio/logo-don-bosco.png" alt="Don Bosco Construcciones">
+    <span class="fine">© 2026 Don Bosco Construcciones. Todos los derechos reservados.</span>
+  </div>
+</footer>
+
+<script>
+  // Carga diferida de fondos: las imágenes con data-bg se descargan recién cuando están por
+  // aparecer en pantalla. Así la página abre rápido en celular y iPad.
+  (function(){
+    function cargarFondo(el){
+      if(el && el.getAttribute('data-bg')){
+        el.style.backgroundImage = "url('" + el.getAttribute('data-bg') + "')";
+        el.removeAttribute('data-bg');
+      }
+    }
+    window.cargarFondo = cargarFondo;
+    var objetivos = [].slice.call(document.querySelectorAll('.obra-tile[data-bg], .obra-img[data-bg], [data-bg-group]'));
+    function cargarObjetivo(el){
+      if(el.hasAttribute('data-bg-group')){
+        [].forEach.call(el.querySelectorAll('[data-bg]'), cargarFondo);
+      } else {
+        cargarFondo(el);
+      }
+    }
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ cargarObjetivo(e.target); io.unobserve(e.target); }
+        });
+      }, {rootMargin: '900px 0px'});
+      objetivos.forEach(function(el){ io.observe(el); });
+    } else {
+      objetivos.forEach(cargarObjetivo);
+    }
+  })();
+</script>
+<script>
+// Anima los números de la banda de estadísticas como contador al entrar en pantalla.
+  // El valor final ya está escrito en el HTML y recién al arrancar la animación se pone en 0,
+  // así una vista previa que no ejecute JavaScript igual muestra los números correctos.
+  (function(){
+    var nums = document.querySelectorAll('.stats-band-item .num[data-count]');
+    if(!nums.length) return;
+
+    function animateCount(el){
+      var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      var suffix = el.getAttribute('data-suffix') || '';
+      el.textContent = '0' + suffix;
+      var duration = 1400;
+      var start = null;
+
+      function step(timestamp){
+        if(!start) start = timestamp;
+        var progress = Math.min((timestamp - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.floor(eased * target);
+        el.textContent = current + suffix;
+        if(progress < 1){
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = target + suffix;
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    if('IntersectionObserver' in window){
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            animateCount(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.4});
+      nums.forEach(function(el){ observer.observe(el); });
+    } else {
+      nums.forEach(function(el){ animateCount(el); });
+    }
+  })();
+
+  // Envío del formulario de contacto a Netlify Forms, sin salir de la página.
+  // Si la página se abre como archivo local (sin servidor), el envío no funciona:
+  // en ese caso se muestra el mail para escribir directamente.
+  (function(){
+    var form = document.getElementById('formContacto');
+    if(!form) return;
+    var estado = document.getElementById('formEstado');
+    var boton = form.querySelector('button[type="submit"]');
+    var textoBoton = boton ? boton.textContent : '';
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      estado.className = 'form-estado';
+      estado.textContent = '';
+      if(boton){ boton.disabled = true; boton.textContent = 'Enviando...'; }
+
+      fetch('/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+      .then(function(r){
+        if(!r.ok) throw new Error(r.status);
+        form.reset();
+        estado.className = 'form-estado ok';
+        estado.textContent = 'Gracias por tu consulta. Te respondemos a la brevedad.';
+      })
+      .catch(function(){
+        estado.className = 'form-estado error';
+        estado.innerHTML = 'No pudimos enviar la consulta. Escribinos a <a href="mailto:Info@construccionesdb.com">Info@construccionesdb.com</a> y te respondemos.';
+      })
+      .then(function(){
+        if(boton){ boton.disabled = false; boton.textContent = textoBoton; }
+      });
+    });
+  })();
+
+  // Efecto de tipeo (typewriter) para el titulo de "Trayectoria"
+  (function(){
+    var el = document.querySelector('.trayectoria-typewriter');
+    if(!el) return;
+    var fullText = el.getAttribute('data-text') || el.textContent;
+
+    function typeText(){
+      el.textContent = '';
+      el.classList.add('is-typing');
+      var i = 0;
+      var interval = setInterval(function(){
+        el.textContent = fullText.slice(0, i + 1);
+        i++;
+        if(i >= fullText.length){
+          clearInterval(interval);
+          setTimeout(function(){ el.classList.remove('is-typing'); }, 600);
+        }
+      }, 32);
+    }
+
+    if('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            typeText();
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.5});
+      obs.observe(el);
+    } else {
+      typeText();
+    }
+  })();
+
+  // Datos y lógica de la ficha de detalle de obra
+  var LARREA_MEDIA = {"galeria": [{"src": "img/obras/larrea/galeria-01.jpg", "cap": "Fachada sobre calle Larrea"}, {"src": "img/obras/larrea/galeria-02.jpg", "cap": "Detalle de balcones"}, {"src": "img/obras/larrea/galeria-03.jpg", "cap": "Terraza con parrillas"}, {"src": "img/obras/larrea/galeria-04.jpg", "cap": "Expansión al aire libre"}, {"src": "img/obras/larrea/galeria-05.jpg", "cap": "Comedor"}, {"src": "img/obras/larrea/galeria-06.jpg", "cap": "Living con panel divisorio"}, {"src": "img/obras/larrea/galeria-07.jpg", "cap": "Living comedor"}, {"src": "img/obras/larrea/galeria-08.jpg", "cap": "Cocina integrada"}, {"src": "img/obras/larrea/galeria-09.jpg", "cap": "Cocina y comedor diario"}, {"src": "img/obras/larrea/galeria-10.jpg", "cap": "Estar y office"}, {"src": "img/obras/larrea/galeria-11.jpg", "cap": "Dormitorio principal"}, {"src": "img/obras/larrea/galeria-12.jpg", "cap": "Dormitorio"}], "planos": [{"src": "img/obras/larrea/plano-01.jpg", "cap": "Subsuelo"}, {"src": "img/obras/larrea/plano-02.jpg", "cap": "Planta baja"}, {"src": "img/obras/larrea/plano-03.jpg", "cap": "Piso 1"}, {"src": "img/obras/larrea/plano-04.jpg", "cap": "Pisos 2 a 10"}, {"src": "img/obras/larrea/plano-05.jpg", "cap": "Piso 11"}, {"src": "img/obras/larrea/plano-06.jpg", "cap": "Piso 12"}, {"src": "img/obras/larrea/plano-07.jpg", "cap": "Terraza — Piso 13"}]};
+
+  var CORDOBA_MEDIA = {"galeria": [{"src": "img/obras/cordoba/galeria-01.jpg", "cap": "Fachada sobre Av. Córdoba"}, {"src": "img/obras/cordoba/galeria-02.jpg", "cap": "Living con balcón"}, {"src": "img/obras/cordoba/galeria-03.jpg", "cap": "Comedor y expansión"}, {"src": "img/obras/cordoba/galeria-04.jpg", "cap": "Cocina integrada al estar"}, {"src": "img/obras/cordoba/galeria-05.jpg", "cap": "Cocina y estar"}, {"src": "img/obras/cordoba/galeria-06.jpg", "cap": "Dormitorio principal"}, {"src": "img/obras/cordoba/galeria-07.jpg", "cap": "Dormitorio con vista"}, {"src": "img/obras/cordoba/galeria-08.jpg", "cap": "Baño"}], "planos": [{"src": "img/obras/cordoba/plano-01.jpg", "cap": "Subsuelo"}, {"src": "img/obras/cordoba/plano-02.jpg", "cap": "Planta baja"}, {"src": "img/obras/cordoba/plano-03.jpg", "cap": "Piso 1"}, {"src": "img/obras/cordoba/plano-04.jpg", "cap": "Pisos 2 a 10"}, {"src": "img/obras/cordoba/plano-05.jpg", "cap": "Piso 11"}, {"src": "img/obras/cordoba/plano-06.jpg", "cap": "Piso 12"}, {"src": "img/obras/cordoba/plano-07.jpg", "cap": "Terraza"}]};
+
+  var SUCRE_MEDIA = {"galeria": [{"src": "img/tarjetas/sucre.jpg", "cap": "Fachada sobre calle Sucre"}, {"src": "img/obras/sucre/galeria-01.jpg", "cap": "Fachada al atardecer"}, {"src": "img/obras/sucre/galeria-02.jpg", "cap": "Acceso y planta baja"}, {"src": "img/obras/sucre/galeria-03.jpg", "cap": "Contrafrente sobre el jardín"}, {"src": "img/obras/sucre/galeria-04.jpg", "cap": "Piscina con solárium"}, {"src": "img/obras/sucre/galeria-05.jpg", "cap": "Living comedor"}, {"src": "img/obras/sucre/galeria-06.jpg", "cap": "Comedor y cocina"}, {"src": "img/obras/sucre/galeria-07.jpg", "cap": "Estar de unidad tipo"}, {"src": "img/obras/sucre/galeria-08.jpg", "cap": "Dormitorio principal"}, {"src": "img/obras/sucre/galeria-09.jpg", "cap": "Dormitorio"}, {"src": "img/obras/sucre/galeria-10.jpg", "cap": "Baño"}], "planos": [{"src": "img/obras/sucre/plano-01.jpg", "cap": "2° Subsuelo"}, {"src": "img/obras/sucre/plano-02.jpg", "cap": "1° Subsuelo"}, {"src": "img/obras/sucre/plano-03.jpg", "cap": "Planta baja"}, {"src": "img/obras/sucre/plano-04.jpg", "cap": "Primer piso"}, {"src": "img/obras/sucre/plano-05.jpg", "cap": "Segundo piso"}, {"src": "img/obras/sucre/plano-06.jpg", "cap": "Pisos 3 a 7"}, {"src": "img/obras/sucre/plano-07.jpg", "cap": "Piso 8"}, {"src": "img/obras/sucre/plano-08.jpg", "cap": "Piso 9"}]};
+
+  var VISTANA_MEDIA = {"galeria": [{"src": "img/tarjetas/vistana.jpg", "cap": "Fachada sobre la calle principal"}, {"src": "img/obras/vistana/galeria-01.jpg", "cap": "Vista desde el parque"}, {"src": "img/obras/vistana/galeria-02.jpg", "cap": "Balcones y expansiones"}, {"src": "img/obras/vistana/galeria-03.jpg", "cap": "Frente a la laguna de Nuevo Bella Vista"}, {"src": "img/obras/vistana/galeria-04.jpg", "cap": "Balcón al atardecer"}, {"src": "img/obras/vistana/galeria-05.jpg", "cap": "Living comedor"}], "planos": [{"src": "img/obras/vistana/plano-01.jpg", "cap": "Planta acceso"}, {"src": "img/obras/vistana/plano-02.jpg", "cap": "Planta jardines"}, {"src": "img/obras/vistana/plano-03.jpg", "cap": "Segundo piso"}, {"src": "img/obras/vistana/plano-04.jpg", "cap": "Tercer piso"}, {"src": "img/obras/vistana/plano-05.jpg", "cap": "Planta de techos"}]};
+
+  var HUIDOBRO_MEDIA = {"galeria": [{"src": "img/tarjetas/huidobro.jpg", "cap": "Fachada sobre Ruiz Huidobro"}, {"src": "img/obras/huidobro/galeria-01.jpg", "cap": "Fachada al atardecer"}, {"src": "img/obras/huidobro/galeria-02.jpg", "cap": "Hall de acceso"}, {"src": "img/obras/huidobro/galeria-03.jpg", "cap": "Jardín en planta baja"}, {"src": "img/obras/huidobro/galeria-04.jpg", "cap": "Piscina con solárium y deck"}, {"src": "img/obras/huidobro/galeria-05.jpg", "cap": "Parrillas al aire libre"}, {"src": "img/obras/huidobro/galeria-06.jpg", "cap": "SUM y expansión"}, {"src": "img/obras/huidobro/galeria-07.jpg", "cap": "Living con vista abierta"}, {"src": "img/obras/huidobro/galeria-08.jpg", "cap": "Living comedor"}, {"src": "img/obras/huidobro/galeria-09.jpg", "cap": "Estar y cocina integrada"}, {"src": "img/obras/huidobro/galeria-10.jpg", "cap": "Dormitorio"}, {"src": "img/obras/huidobro/galeria-11.jpg", "cap": "Baño"}], "planos": [{"src": "img/obras/huidobro/plano-01.jpg", "cap": "Subsuelo"}, {"src": "img/obras/huidobro/plano-02.jpg", "cap": "Planta baja"}, {"src": "img/obras/huidobro/plano-03.jpg", "cap": "Primer piso"}, {"src": "img/obras/huidobro/plano-04.jpg", "cap": "Pisos 2 a 4"}, {"src": "img/obras/huidobro/plano-05.jpg", "cap": "Piso 5"}, {"src": "img/obras/huidobro/plano-06.jpg", "cap": "Piso 6"}, {"src": "img/obras/huidobro/plano-07.jpg", "cap": "Piso 7"}, {"src": "img/obras/huidobro/plano-08.jpg", "cap": "Azotea — Piso 8"}]};
+
+  var SCAL_MEDIA = {"galeria": [{"src": "img/obras/scal/galeria-01.jpg", "cap": "Fachada sobre Scalabrini Ortiz"}, {"src": "img/obras/scal/galeria-02.jpg", "cap": "Frente desde la vereda"}, {"src": "img/obras/scal/galeria-03.jpg", "cap": "Fachada en contrapicado"}, {"src": "img/obras/scal/galeria-04.jpg", "cap": "Contrafrente"}, {"src": "img/obras/scal/galeria-05.jpg", "cap": "Contrafrente sobre el pulmón"}, {"src": "img/obras/scal/galeria-06.jpg", "cap": "Hall de acceso"}, {"src": "img/obras/scal/galeria-07.jpg", "cap": "Terraza con piscina"}, {"src": "img/obras/scal/galeria-08.jpg", "cap": "Terraza, vista aérea"}, {"src": "img/obras/scal/galeria-09.jpg", "cap": "Living comedor"}, {"src": "img/obras/scal/galeria-10.jpg", "cap": "Cocina"}, {"src": "img/obras/scal/galeria-11.jpg", "cap": "Monoambiente"}, {"src": "img/obras/scal/galeria-12.jpg", "cap": "Baño"}]};
+
+  var CACIQUE_MEDIA = {"galeria": [{"src": "img/obras/cacique/galeria-01.jpg", "cap": "Fachada al anochecer"}, {"src": "img/obras/cacique/galeria-02.jpg", "cap": "Fachada sobre la calle"}, {"src": "img/obras/cacique/galeria-03.jpg", "cap": "El conjunto"}, {"src": "img/obras/cacique/galeria-04.jpg", "cap": "Balcones con vegetación"}, {"src": "img/obras/cacique/galeria-05.jpg", "cap": "Hall de acceso"}, {"src": "img/obras/cacique/galeria-06.jpg", "cap": "Cowork"}, {"src": "img/obras/cacique/galeria-07.jpg", "cap": "Gimnasio"}, {"src": "img/obras/cacique/galeria-08.jpg", "cap": "SUM"}, {"src": "img/obras/cacique/galeria-09.jpg", "cap": "Terraza con parrillas"}, {"src": "img/obras/cacique/galeria-10.jpg", "cap": "Bicicletero"}, {"src": "img/obras/cacique/galeria-11.jpg", "cap": "Living comedor"}, {"src": "img/obras/cacique/galeria-12.jpg", "cap": "Cocina"}, {"src": "img/obras/cacique/galeria-13.jpg", "cap": "Baño"}, {"src": "img/obras/cacique/galeria-14.jpg", "cap": "Expansión con vista"}]};
+
+  var ARRICAU_MEDIA = {"galeria": [{"src": "img/obras/arricau/galeria-01.jpg", "cap": "Vista general desde la avenida"}, {"src": "img/obras/arricau/galeria-02.jpg", "cap": "Esquina sobre Av. Torcuato de Alvear"}, {"src": "img/obras/arricau/galeria-03.jpg", "cap": "Frente sobre la esquina"}, {"src": "img/obras/arricau/galeria-04.jpg", "cap": "Perspectiva desde la calle"}, {"src": "img/obras/arricau/galeria-05.jpg", "cap": "Locales en planta baja"}, {"src": "img/obras/arricau/galeria-06.jpg", "cap": "Fachada de las viviendas"}, {"src": "img/obras/arricau/galeria-07.jpg", "cap": "Locales con fachada vegetada"}, {"src": "img/obras/arricau/galeria-08.jpg", "cap": "Balcones con vegetación"}, {"src": "img/obras/arricau/galeria-09.jpg", "cap": "Pasaje comercial interior"}, {"src": "img/obras/arricau/galeria-10.jpg", "cap": "Pasaje hacia los locales"}, {"src": "img/obras/arricau/galeria-11.jpg", "cap": "Detalle de esquina vidriada"}, {"src": "img/obras/arricau/galeria-12.jpg", "cap": "Acceso"}]};
+
+  var ALBERDI_MEDIA = {"galeria": [{"src": "img/obras/alberdi/galeria-01.jpg", "cap": "Fachada sobre Av. Juan Bautista Alberdi"}, {"src": "img/obras/alberdi/galeria-02.jpg", "cap": "La torre en contrapicado"}, {"src": "img/obras/alberdi/galeria-03.jpg", "cap": "Vista desde la calle"}, {"src": "img/obras/alberdi/galeria-04.jpg", "cap": "Hall de acceso"}, {"src": "img/obras/alberdi/galeria-05.jpg", "cap": "Lobby con mural"}, {"src": "img/obras/alberdi/galeria-06.jpg", "cap": "Núcleo de ascensores"}, {"src": "img/obras/alberdi/galeria-07.jpg", "cap": "Estar del lobby"}, {"src": "img/obras/alberdi/galeria-08.jpg", "cap": "Galería vidriada"}, {"src": "img/obras/alberdi/galeria-09.jpg", "cap": "Espacio común"}, {"src": "img/obras/alberdi/galeria-10.jpg", "cap": "Patio con sector de estar"}, {"src": "img/obras/alberdi/galeria-11.jpg", "cap": "Sector de descanso"}, {"src": "img/obras/alberdi/galeria-12.jpg", "cap": "Sector de juegos"}, {"src": "img/obras/alberdi/galeria-13.jpg", "cap": "Solárium"}]};
+
+  var MAURE_MEDIA = {"galeria": [{"src": "img/obras/maure/galeria-01.jpg", "cap": "Detalle de balcones"}, {"src": "img/obras/maure/galeria-02.jpg", "cap": "Fachada sobre Maure"}, {"src": "img/obras/maure/galeria-03.jpg", "cap": "Esquina del edificio"}, {"src": "img/obras/maure/galeria-04.jpg", "cap": "Vista desde la vereda"}, {"src": "img/obras/maure/galeria-05.jpg", "cap": "Frente entre los árboles"}, {"src": "img/obras/maure/galeria-06.jpg", "cap": "Acceso y local en planta baja"}, {"src": "img/obras/maure/galeria-07.jpg", "cap": "Vereda y acceso"}, {"src": "img/obras/maure/galeria-08.jpg", "cap": "Detalle de balcón"}]};
+
+  var IRU_MEDIA = {"galeria": [{"src": "img/obras/iru/galeria-01.jpg", "cap": "Fachada entre los árboles"}, {"src": "img/obras/iru/galeria-02.jpg", "cap": "El hotel en el parque"}, {"src": "img/obras/iru/galeria-03.jpg", "cap": "Piscina, vista aérea"}, {"src": "img/obras/iru/galeria-04.jpg", "cap": "Habitación con vista a la selva"}, {"src": "img/obras/iru/galeria-05.jpg", "cap": "Habitación"}, {"src": "img/obras/iru/galeria-06.jpg", "cap": "Salón de convenciones"}]};
+
+  var CTES_MEDIA = {"galeria": [{"src": "img/obras/ctes/galeria-01.jpg", "cap": "Fachada sobre Av. Corrientes"}, {"src": "img/obras/ctes/galeria-02.jpg", "cap": "El edificio desde la calle"}, {"src": "img/obras/ctes/galeria-03.jpg", "cap": "Parrillas en la terraza"}, {"src": "img/obras/ctes/galeria-04.jpg", "cap": "Quincho con vista a la ciudad"}, {"src": "img/obras/ctes/galeria-05.jpg", "cap": "Piscina en el piso 15"}, {"src": "img/obras/ctes/galeria-06.jpg", "cap": "SUM con vista"}, {"src": "img/obras/ctes/galeria-07.jpg", "cap": "Sala de reuniones"}], "planos": [{"src": "img/obras/ctes/plano-01.jpg", "cap": "Piso 15 — amenities"}, {"src": "img/obras/ctes/plano-02.jpg", "cap": "Unidad B — 1 ambiente, piso 14"}, {"src": "img/obras/ctes/plano-03.jpg", "cap": "Unidad D — 2 ambientes, pisos 2 a 14"}, {"src": "img/obras/ctes/plano-04.jpg", "cap": "Unidad D — 3 ambientes, piso 1"}, {"src": "img/obras/ctes/plano-05.jpg", "cap": "Unidad H — 4 ambientes, piso 14"}]};
+
+  var AIMARA_MEDIA = {"galeria": [{"src": "img/obras/aimara/galeria-01.jpg", "cap": "Fachada"}, {"src": "img/obras/aimara/galeria-02.jpg", "cap": "Frente y acceso en planta baja"}, {"src": "img/obras/aimara/galeria-03.jpg", "cap": "Living con terraza"}, {"src": "img/obras/aimara/galeria-04.jpg", "cap": "Living comedor"}, {"src": "img/obras/aimara/galeria-05.jpg", "cap": "Estar con panel de madera"}, {"src": "img/obras/aimara/galeria-06.jpg", "cap": "Comedor"}, {"src": "img/obras/aimara/galeria-07.jpg", "cap": "Comedor y cocina"}, {"src": "img/obras/aimara/galeria-08.jpg", "cap": "Cocina integrada"}, {"src": "img/obras/aimara/galeria-09.jpg", "cap": "Cocina con isla y estar"}, {"src": "img/obras/aimara/galeria-10.jpg", "cap": "Living y cocina"}, {"src": "img/obras/aimara/galeria-11.jpg", "cap": "Dormitorio principal"}, {"src": "img/obras/aimara/galeria-12.jpg", "cap": "Dormitorio con luz natural"}, {"src": "img/obras/aimara/galeria-13.jpg", "cap": "Baño"}], "planos": [{"src": "img/obras/aimara/plano-01.jpg", "cap": "Local comercial — planta baja y piso 1"}, {"src": "img/obras/aimara/plano-02.jpg", "cap": "Unidad D — Estudio profesional, pisos 2 a 9"}, {"src": "img/obras/aimara/plano-03.jpg", "cap": "Unidad A — 1 ambiente, pisos 2 a 7"}, {"src": "img/obras/aimara/plano-04.jpg", "cap": "Unidad E — 2 ambientes, pisos 1 a 9"}, {"src": "img/obras/aimara/plano-05.jpg", "cap": "Unidad F — 2 ambientes, pisos 1 a 9"}, {"src": "img/obras/aimara/plano-06.jpg", "cap": "Unidad C — 2 ambientes, pisos 3 a 7"}, {"src": "img/obras/aimara/plano-07.jpg", "cap": "Unidad B — 3 ambientes, pisos 2 a 7"}, {"src": "img/obras/aimara/plano-08.jpg", "cap": "Unidad A — 4 ambientes, piso 8"}, {"src": "img/obras/aimara/plano-09.jpg", "cap": "Unidad A — 4 ambientes, piso 9"}]};
+
+  var BERUTI_MEDIA = {"galeria": [{"src": "img/obras/beruti/galeria-01.jpg", "cap": "Fachada con parasoles de madera"}, {"src": "img/obras/beruti/galeria-02.jpg", "cap": "Balcones y parasoles desde la vereda"}, {"src": "img/obras/beruti/galeria-03.jpg", "cap": "Living con ventanal"}, {"src": "img/obras/beruti/galeria-04.jpg", "cap": "Cocina con barra y estar"}, {"src": "img/obras/beruti/galeria-05.jpg", "cap": "Terraza con parrilla"}]};
+
+  var obrasData = {
+    juncal: {
+      nombre: 'Casa Juncal', estado: 'por-iniciar', estadoLabel: 'Por iniciar',
+      ubicacion: 'Juncal 2463, CABA',
+      specs: [
+        {k:'Tipología', v:'Edificio de viviendas, PB y 13 pisos + 1 SS'},
+        {k:'Plazo de obra', v:'30 meses'},
+        {k:'Superficie', v:'3.110 m²'},
+        {k:'Estado', v:'Por iniciar'}
+      ],
+      amenities: [], galeriaCount: 6, planosCount: 3
+    },
+    larrea: {
+      nombre: 'Casa Larrea', estado: 'por-iniciar', estadoLabel: 'Por iniciar',
+      ubicacion: 'Larrea 844, CABA',
+      specs: [
+        {k:'Tipología', v:'Edificio de viviendas, PB y 13 pisos + 1 SS'},
+        {k:'Plazo de obra', v:'30 meses'},
+        {k:'Superficie', v:'3.111 m²'},
+        {k:'Estado', v:'Por iniciar'}
+      ],
+      amenities: ['Terraza en el último piso', 'SUM', 'Sector parrillas', 'Bike parking (50)', 'Local comercial en PB'],
+      galeria: LARREA_MEDIA.galeria, planos: LARREA_MEDIA.planos
+    },
+    cacique: {
+      nombre: 'Complejo Cacique', estado: 'en-construccion', estadoLabel: 'En construcción',
+      ubicacion: 'Av. Scalabrini Ortiz 1037 / Araóz 1038, CABA',
+      specs: [
+        {k:'Tipología', v:'2 torres de viviendas, PB y 14 pisos + 1 SS'},
+        {k:'Plazo de obra', v:'40 meses'},
+        {k:'Superficie', v:'7.200 m²'},
+        {k:'Estado', v:'En construcción'}
+      ],
+      amenities: ['Cowork', 'Gimnasio', 'SUM', 'Terraza con parrillas', 'Bicicletero'],
+      galeria: CACIQUE_MEDIA.galeria, planosCount: 4
+    },
+    scalabrini550: {
+      nombre: 'Scalabrini Ortiz 550', estado: 'en-construccion', estadoLabel: 'En construcción',
+      ubicacion: 'Av. Scalabrini Ortiz 550, CABA',
+      specs: [
+        {k:'Tipología', v:'Torre de viviendas, PB y 12 pisos + 1 SS'},
+        {k:'Plazo de obra', v:'30 meses'},
+        {k:'Superficie', v:'3.963 m²'},
+        {k:'Estado', v:'En construcción'}
+      ],
+      amenities: ['Terraza con piscina y solárium', 'Hall de acceso'],
+      galeria: SCAL_MEDIA.galeria, planosCount: 3
+    },
+    cordoba4309: {
+      nombre: 'Av. Córdoba 4309', estado: 'por-iniciar', estadoLabel: 'Por iniciar',
+      ubicacion: 'Av. Córdoba 4309, Palermo, CABA',
+      specs: [
+        {k:'Tipología', v:'Edificio de viviendas, PB y 13 pisos + 1 SS'},
+        {k:'Plazo de obra', v:'30 meses'},
+        {k:'Superficie', v:'3.235 m²'},
+        {k:'Estado', v:'Por iniciar'}
+      ],
+      amenities: ['Terraza de 86 m²', 'SUM de 44 m²', 'Patios en planta baja', 'Espacio para bicicletas (49)', 'Local comercial en PB'],
+      galeria: CORDOBA_MEDIA.galeria, planos: CORDOBA_MEDIA.planos
+    },
+    sucre: {
+      nombre: 'Casa Sucre', estado: 'en-construccion', estadoLabel: 'En construcción',
+      ubicacion: 'Sucre 1545, Belgrano, CABA',
+      specs: [
+        {k:'Tipología', v:'Edificio de viviendas, PB y 9 pisos + 2 SS'},
+        {k:'Plazo de obra', v:'A confirmar'},
+        {k:'Superficie', v:'A confirmar'},
+        {k:'Estado', v:'En construcción'}
+      ],
+      amenities: ['Piscina descubierta con solárium', 'Gimnasio', 'SUM', 'Sector parrillas', 'Jardín en pulmón de manzana', 'Espacio de juegos infantiles', 'Bicicletero', 'Cocheras y bauleras'],
+      galeria: SUCRE_MEDIA.galeria, planos: SUCRE_MEDIA.planos
+    },
+    vistana: {
+      nombre: 'Edificio Vistana', estado: 'en-construccion', estadoLabel: 'En construcción',
+      ubicacion: 'Nuevo Bella Vista, Bella Vista',
+      specs: [
+        {k:'Tipología', v:'Complejo de viviendas en PH, PB y 3 pisos + 1 SS'},
+        {k:'Plazo de obra', v:'40 meses'},
+        {k:'Superficie', v:'5.943 m²'},
+        {k:'Estado', v:'En construcción'}
+      ],
+      amenities: [],
+      galeria: VISTANA_MEDIA.galeria, planos: VISTANA_MEDIA.planos
+    },
+    huidobro: {
+      nombre: 'Casa Huidobro', estado: 'en-construccion', estadoLabel: 'En construcción',
+      ubicacion: 'Av. Ruiz Huidobro 3075, Saavedra, CABA',
+      specs: [
+        {k:'Tipología', v:'Edificio de viviendas en PH, PB y 7 pisos + 1 SS'},
+        {k:'Plazo de obra', v:'30 meses'},
+        {k:'Superficie', v:'5.679 m²'},
+        {k:'Estado', v:'En construcción'}
+      ],
+      amenities: ['Jardín en planta baja', 'Piscina con solárium y deck', 'Parrillas al aire libre', 'SUM para reuniones o trabajo', 'Gimnasio', 'Local comercial en PB'],
+      galeria: HUIDOBRO_MEDIA.galeria, planos: HUIDOBRO_MEDIA.planos
+    },
+    aimara: {
+      nombre: 'Edificio Aimará', estado: 'en-construccion', estadoLabel: 'En construcción',
+      ubicacion: 'Soldado de la Independencia 704 esq. Matienzo, Las Cañitas, CABA',
+      specs: [
+        {k:'Tipología', v:'Edificio de viviendas y local comercial, PB y 9 pisos'},
+        {k:'Plazo de obra', v:'A confirmar'},
+        {k:'Superficie', v:'A confirmar'},
+        {k:'Estado', v:'En construcción'}
+      ],
+      amenities: ['Green rooftop', 'Sector parrillas', '9 cocheras', 'Bike racks', 'Local comercial en PB y piso 1'],
+      galeria: AIMARA_MEDIA.galeria, planos: AIMARA_MEDIA.planos
+    },
+    arricau: {
+      nombre: 'Paseo Arricau', estado: 'finalizada', estadoLabel: 'Finalizada',
+      ubicacion: 'Av. Torcuato de Alvear 251, Don Torcuato',
+      specs: [
+        {k:'Comitente', v:'Poblar S.A.'},
+        {k:'Tipología', v:'Locales comerciales y viviendas en PH, SS, PB y 4 pisos'},
+        {k:'Plazo de obra', v:'30 meses'},
+        {k:'Superficie', v:'9.830 m²'}
+      ],
+      amenities: [],
+      galeria: ARRICAU_MEDIA.galeria
+    },
+    alberdi833: {
+      nombre: 'Alberdi 833', estado: 'finalizada', estadoLabel: 'Finalizada',
+      ubicacion: 'Av. Juan Bautista Alberdi 833, CABA',
+      specs: [
+        {k:'Comitente', v:'Fideicomiso Alberdi 833'},
+        {k:'Tipología', v:'Torre de viviendas en PH (180 unidades) y cocheras, 2 SS, PB y 19 pisos'},
+        {k:'Plazo de obra', v:'36 meses'},
+        {k:'Superficie', v:'14.600 m²'}
+      ],
+      amenities: [],
+      galeria: ALBERDI_MEDIA.galeria
+    },
+    maure4008: {
+      nombre: 'Maure 4008', estado: 'finalizada', estadoLabel: 'Finalizada',
+      ubicacion: 'Maure 4008, CABA',
+      specs: [
+        {k:'Comitente', v:'Fideicomiso Maure 4008'},
+        {k:'Tipología', v:'Torre de viviendas en PH, PB y 9 pisos'},
+        {k:'Plazo de obra', v:'24 meses'},
+        {k:'Superficie', v:'2.164 m²'}
+      ],
+      amenities: [],
+      galeria: MAURE_MEDIA.galeria
+    },
+    corrientes3401: {
+      nombre: 'Av. Corrientes 3401', estado: 'finalizada', estadoLabel: 'Finalizada',
+      ubicacion: 'Av. Corrientes 3401, CABA',
+      specs: [
+        {k:'Comitente', v:'JNT Desarrollos'},
+        {k:'Tipología', v:'Torre de viviendas en PH y cocheras, PB y 15 pisos + 2 SS'},
+        {k:'Plazo de obra', v:'40 meses'},
+        {k:'Superficie', v:'19.600 m²'}
+      ],
+      amenities: ['Piscina y solárium', 'Parrillas', 'SUM', 'Gimnasio', 'Sala de cine', 'Sauna'],
+      galeria: CTES_MEDIA.galeria, planos: CTES_MEDIA.planos
+    },
+    hotel_iru: {
+      nombre: 'Hotel Irú', estado: 'finalizada', estadoLabel: 'Finalizada',
+      ubicacion: 'Puerto Iguazú, Provincia de Misiones',
+      specs: [
+        {k:'Comitente', v:'SATSAID'},
+        {k:'Tipología', v:'Hotel'},
+        {k:'Plazo de obra', v:'24 meses'},
+        {k:'Superficie', v:'7.800 m²'}
+      ],
+      amenities: [],
+      galeria: IRU_MEDIA.galeria
+    },
+    beruti: {
+      nombre: 'Beruti 2783', estado: 'finalizada', estadoLabel: 'Finalizada',
+      ubicacion: 'Beruti 2783, CABA',
+      specs: [
+        {k:'Comitente', v:'JNT Desarrollos'},
+        {k:'Tipología', v:'Torre de viviendas en PH, PB y 9 pisos'},
+        {k:'Plazo de obra', v:'24 meses'},
+        {k:'Superficie', v:'1.747 m²'}
+      ],
+      amenities: ['Terraza con parrilla'],
+      galeria: BERUTI_MEDIA.galeria
+    }
+  };
+
+  function openObraDetail(id){
+    var data = obrasData[id];
+    if(!data) return;
+
+    // La imagen de portada de la ficha sale de la tarjeta: en las obras en curso
+    // el fondo vive en la propia tile, en las terminadas en su .obra-img
+    var cardEl = document.querySelector('.obra-tile[data-obra="' + id + '"], .obra-card[onclick*="' + id + '"] .obra-img');
+    if(cardEl && window.cargarFondo) window.cargarFondo(cardEl);
+    var heroEl = document.getElementById('obraOverlayHero');
+    if(cardEl){
+      var bg = getComputedStyle(cardEl).backgroundImage;
+      heroEl.style.backgroundImage = bg;
+    }
+
+    document.getElementById('obraOverlayEstado').textContent = data.estadoLabel;
+    document.getElementById('obraOverlayEstado').className = 'estado-badge ' + data.estado;
+    document.getElementById('obraOverlayNombre').textContent = data.nombre;
+    document.getElementById('obraOverlayUbicacion').textContent = data.ubicacion;
+
+    var specsEl = document.getElementById('obraOverlaySpecs');
+    specsEl.innerHTML = data.specs.map(function(s){
+      return '<div class="spec"><div class="k">' + s.k + '</div><div class="v">' + s.v + '</div></div>';
+    }).join('');
+
+    var amenitiesWrap = document.getElementById('obraOverlayAmenitiesWrap');
+    var amenitiesEl = document.getElementById('obraOverlayAmenities');
+    if(data.amenities && data.amenities.length){
+      amenitiesWrap.style.display = '';
+      amenitiesEl.innerHTML = data.amenities.map(function(a){ return '<span>' + a + '</span>'; }).join('');
+    } else {
+      amenitiesWrap.style.display = 'none';
+    }
+
+    var placeholderIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg>';
+
+    // Si la obra tiene imagenes cargadas las mostramos; si no, quedan los placeholders
+    // Las obras que todavia no estan terminadas solo tienen renders, no fotos:
+    // lo marcamos en cada tile para que nadie lea una imagen 3D como obra hecha.
+    var esRender = (data.estado !== 'finalizada');
+
+    function buildTiles(items, count, etiqueta, extraClass){
+      if(items && items.length){
+        return items.map(function(it, idx){
+          var chip = (esRender && extraClass === 'galeria') ? '<span class="render-chip">Render</span>' : '';
+          return '<div class="gallery-tile has-img ' + extraClass + '" ' +
+                 'onclick="openLightbox(\'' + extraClass + '\', ' + idx + ')">' + chip +
+                 '<img src="' + it.src + '" alt="' + it.cap + '" loading="lazy">' +
+                 '<div class="cap">' + it.cap + '</div></div>';
+        }).join('');
+      }
+      var html = '';
+      for(var i = 1; i <= (count || 6); i++){
+        html += '<div class="gallery-tile placeholder">' + placeholderIcon +
+                '<span>' + etiqueta + ' ' + i + '<br>próximamente</span></div>';
+      }
+      return html;
+    }
+
+    lightboxSets.galeria = data.galeria || [];
+    lightboxSets.plano = data.planos || [];
+
+    document.getElementById('obraOverlayGallery').innerHTML =
+      buildTiles(data.galeria, data.galeriaCount, 'Render', 'galeria');
+    // Una obra terminada normalmente no lleva planos en la ficha: si no hay ni
+    // imagenes ni placeholders configurados, escondemos la seccion entera.
+    var hayPlanos = (data.planos && data.planos.length) || data.planosCount;
+    document.getElementById('obraOverlayPlanosWrap').style.display = hayPlanos ? '' : 'none';
+    document.getElementById('obraOverlayPlanos').innerHTML =
+      buildTiles(data.planos, data.planosCount, 'Plano', 'plano');
+
+    document.getElementById('obraOverlay').classList.add('is-open');
+    document.body.classList.add('obra-overlay-active');
+  }
+
+  function closeObraDetail(){
+    document.getElementById('obraOverlay').classList.remove('is-open');
+    document.body.classList.remove('obra-overlay-active');
+  }
+
+  // Lightbox: ver renders y planos en grande, con flechas para navegar
+  var lightboxSets = {galeria: [], plano: []};
+  var lightboxCurrent = {set: 'galeria', index: 0};
+
+  function openLightbox(setName, index){
+    var items = lightboxSets[setName] || [];
+    if(!items.length) return;
+    lightboxCurrent = {set: setName, index: index};
+    paintLightbox();
+    document.getElementById('lightbox').classList.add('is-open');
+  }
+
+  function paintLightbox(){
+    var items = lightboxSets[lightboxCurrent.set] || [];
+    var item = items[lightboxCurrent.index];
+    if(!item) return;
+    document.getElementById('lightboxImg').src = item.src;
+    document.getElementById('lightboxCap').textContent =
+      item.cap + '  ·  ' + (lightboxCurrent.index + 1) + '/' + items.length;
+  }
+
+  function stepLightbox(dir){
+    var items = lightboxSets[lightboxCurrent.set] || [];
+    if(!items.length) return;
+    lightboxCurrent.index = (lightboxCurrent.index + dir + items.length) % items.length;
+    paintLightbox();
+  }
+
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('is-open');
+  }
+
+  document.addEventListener('keydown', function(e){
+    var lbOpen = document.getElementById('lightbox').classList.contains('is-open');
+    if(e.key === 'Escape'){
+      if(lbOpen){ closeLightbox(); } else { closeObraDetail(); }
+    }
+    if(lbOpen && e.key === 'ArrowRight') stepLightbox(1);
+    if(lbOpen && e.key === 'ArrowLeft') stepLightbox(-1);
+  });
+
+  // Carrusel de clientes: botones prev/next
+  function scrollClientes(dir){
+    var el = document.getElementById('clientesCarousel');
+    if(!el) return;
+    var card = el.querySelector('.cliente-logo');
+    var step = card ? card.getBoundingClientRect().width + 2 : 200;
+    el.scrollBy({left: dir * step * 2, behavior: 'smooth'});
+  }
+
+  // Slideshow sutil del fondo del hero, cambia de foto cada 4 segundos con fundido
+  (function(){
+    var slides = document.querySelectorAll('#heroSlideshow .hero-bg-slide:not(.oculta)');
+    if(slides.length < 2) return;
+    var current = 0;
+    var cargar = window.cargarFondo || function(){};
+    cargar(slides[1]);
+    setInterval(function(){
+      slides[current].classList.remove('is-active');
+      current = (current + 1) % slides.length;
+      cargar(slides[current]);
+      slides[current].classList.add('is-active');
+      cargar(slides[(current + 1) % slides.length]);
+    }, 4000);
+  })();
+</script>
+
+</body>
+</html>
