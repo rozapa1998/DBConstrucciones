@@ -1,0 +1,46 @@
+DON BOSCO CONSTRUCCIONES — SITIO WEB (versión para hosting con PHP)
+===================================================================
+
+Qué pasaba
+----------
+En el servidor faltaban archivos: la carpeta img/sitio entera (95 imágenes)
+y la foto de 10 de las 15 obras. La subida había quedado incompleta, por eso
+las imágenes aparecían rotas (y también al abrir esa copia en local).
+El código y las rutas estaban bien.
+
+Qué cambió en esta versión
+--------------------------
+1. Todas las imágenes están en UNA sola carpeta, img/, sin subcarpetas
+   (131 archivos). Así es mucho más difícil que se pierda una parte al subir.
+2. El formulario de contacto ahora lo envía contacto.php por mail a
+   Info@construccionesdb.com. Antes estaba preparado para Netlify y en este
+   hosting mostraba "Gracias" pero la consulta no llegaba a ningún lado.
+   Si alguna vez el mail no sale, la página abre el correo del visitante con
+   la consulta ya escrita: nunca se pierde una consulta.
+
+Cómo subirlo (recomendado)
+--------------------------
+1. Borrar del servidor el index.html y la carpeta img/ viejos.
+2. Subir este .zip a la raíz del dominio (public_html) con el Administrador de
+   archivos del hosting y usar "Extraer" ahí mismo. Es más seguro que subir
+   carpetas arrastrándolas o por FTP.
+3. Tiene que quedar así:
+       public_html/index.html
+       public_html/contacto.php
+       public_html/img/   (131 imágenes)
+4. Revisar que la carpeta img/ tenga 131 archivos (la lista completa está en
+   LISTA_DE_ARCHIVOS.txt).
+5. Probar el formulario con un mensaje de prueba y fijarse que llegue a
+   Info@construccionesdb.com (revisar también Spam la primera vez).
+
+Si el mail del formulario no llega
+----------------------------------
+Algunos hostings piden que el remitente sea una casilla real del dominio.
+En contacto.php, línea 5, se puede cambiar web@construccionesdb.com por una
+casilla existente (por ejemplo Info@construccionesdb.com).
+
+Datos cargados
+--------------
+Teléfono   +54 11 4780-2690
+Email      Info@construccionesdb.com
+Oficina    Tucumán 141, CABA
